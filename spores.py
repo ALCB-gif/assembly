@@ -24,9 +24,6 @@ gcc_data = pd.read_sql("""
 SELECT * FROM ds_mr_global.gcc_select
 """, con=dl.engine)
 
-#Data preview 
-gcc_data.to_csv('all_data_s.tsv', sep='\t', index=False)
-
 #SQL query (risk group)
 gcc_data = pd.read_sql("""
 SELECT * FROM ds_mr_biohealth.gspo_strains where
@@ -39,6 +36,9 @@ and riskgroup= '1'
 gcc_data = pd.read_sql("""
 SELECT * FROM ds_mr_biohealth.lab_gcc_biohealth_insilico_summary
 """,con=dl.engine)
+
+#Data preview 
+gcc_data.to_csv('all_data_s.tsv', sep='\t', index=False)
 
 #Output directories
 g_output_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.getcwd(), "assembly")
